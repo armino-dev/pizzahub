@@ -10,4 +10,11 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    protected function makeResponse($request, $template, $data = []) {
+        if ($request->ajax()) {
+            return response()->json($data);
+        }
+        return view($template, $data);
+    }
 }

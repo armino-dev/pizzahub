@@ -36,4 +36,22 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+
+    /**
+     * initials
+     * Make initials form user name
+     * 
+     * @return string 
+     */
+    public function initials(): string
+    {
+        $names = explode(" ", $this->name);
+        $initials = "";
+        for ($i = 0; $i < 2 || $i < count($names); $i++) {
+            $initials .= strtoupper($names[0]);
+        }
+        return $initials;
+    }
 }

@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Public routes
+Route::get('/', 'Frontend\IndexController@index')->name('home');
+
+// Authenticated Routes
+Route::group( ['middleware' => ['auth'] ] , function() {
+    // 
 });
+
+
+Auth::routes();
+
+
