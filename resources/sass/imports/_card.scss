@@ -1,0 +1,101 @@
+.card {
+    &-listing {
+        overflow: hidden;
+        border-radius: 5px;
+        padding: 0;        
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+        &-header {
+            a {
+                display: flex;
+                height: 240px;
+                width: 100%;
+                img {
+                    height: 240px;
+                    width: 320px;
+                    background: url(/images/default.svg) no-repeat top left;
+                    background-size: cover;
+                    object-fit: cover;
+                    transition: all 0.3s;
+                    transform: scale(1);
+                }
+                img:hover {
+                    transform: scale(1.2);
+                }
+            }
+        }
+        &-featured {
+            background-color: $primary;
+            position: absolute;
+            top: 30px;
+            left: -50px;
+            z-index: 99;
+            width: 200px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            -moz-transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+        }
+
+        &-price {
+            color: white;
+            z-index: 99;
+            position: absolute;
+            bottom: 15px;
+            left: 10%;
+            & span {
+                display: block;
+                font-size: 0.7rem;
+            }
+        }
+        &-name {
+            h5 {
+                padding: 10px 10px 0 10px;
+                display: flex;
+                font-size: 1.1rem;
+                a {
+                    color: $dark;
+                    text-decoration: none;
+                    &:hover {
+                        color: $primary;
+                    }
+                }
+            }
+            h5 a,
+            p {
+                flex: 1;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            p {
+                padding: 0 10px;
+                color: $dark;
+                font-size: 0.9rem;
+            }
+        }
+        &-details {
+            min-height: 80px;
+            p {
+                list-style-type: none;
+                display: flex;
+                flex-flow: row;
+                padding: 0 10px;
+                font-size: 1em;
+                color: $dark;
+            }
+        }
+        &-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: white;
+            font-size: 0.8em;
+            background-color: rgba(0, 0, 0, 0.5);
+            div {
+                padding: 1em;
+            }
+        }
+    }
+}

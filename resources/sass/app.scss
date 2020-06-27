@@ -1,1 +1,44 @@
-//
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'imports/variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+
+html {
+	position:relative;
+	min-height:100%;
+}
+
+body {
+	min-height:100vh;
+	display: flex;
+    flex-direction: column;
+	font-family: Nunito
+}
+
+h1,h2,h3,h4,h5,h6 {font-family: Nunito, sans-serif;}
+
+#wrapper {
+	display:flex;
+	flex:1;
+	flex-direction:column;
+}
+
+main {
+    width:100%;
+	flex:1 0 auto;
+	padding-top: $navbar-height;
+    padding-bottom: $sticky-footer-height;
+}
+
+
+// Components
+@import 'imports/scroll_to_top';
+@import 'imports/card';
+
+@import 'imports/footer';
+
