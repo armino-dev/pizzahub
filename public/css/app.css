@@ -11106,11 +11106,66 @@ main {
   justify-content: space-between;
   color: white;
   font-size: 0.8em;
-  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .card-listing-footer div {
   padding: 1em;
+}
+
+.product .image img {
+  min-height: 240px;
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.5), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.product input[type=text],
+.product input[type=number] {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  width: 100%;
+  padding: 10px 0 10px 10px;
+  text-align: end;
+}
+
+.product .price,
+.product .quantity {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
+  margin: 0 0 20px 0;
+}
+
+.product .price .after,
+.product .price .before,
+.product .quantity .after,
+.product .quantity .before {
+  display: flex;
+  width: 100%;
+}
+
+.product .price .after span,
+.product .price .before span,
+.product .quantity .after span,
+.product .quantity .before span {
+  padding: 10px 0 10px 10px;
+}
+
+.product .price .after span#item-price,
+.product .price .before span#item-price,
+.product .quantity .after span#item-price,
+.product .quantity .before span#item-price {
+  width: 100%;
+  text-align: end;
+  padding-right: 10px;
+}
+
+.product .price .before,
+.product .quantity .before {
+  background: black;
+  color: white;
 }
 
 footer.sticky-footer {

@@ -37242,17 +37242,19 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 $(document).ready(function () {
   "use strict"; // Prevent the content wrapper from scrolling when the fixed side navigation hovered over
 
+  var _this = this;
+
   $('body.navbar').on('mousewheel DOMMouseScroll wheel', function (e) {
     if ($(window).width() > 768) {
       var e0 = e.originalEvent,
           delta = e0.wheelDelta || -e0.detail;
-      this.scrollTop += (delta < 0 ? 1 : -1) * 30;
+      _this.scrollTop += (delta < 0 ? 1 : -1) * 30;
       e.preventDefault();
     }
   }); // Scroll to top button appear
 
   $(document).on('scroll', function () {
-    var scrollDistance = $(this).scrollTop();
+    var scrollDistance = $(_this).scrollTop();
 
     if (scrollDistance > 100) {
       $('.scroll-to-top').fadeIn();
@@ -37262,10 +37264,34 @@ $(document).ready(function () {
   }); // Smooth scrolling using jQuery easing
 
   $(document).on('click', 'a.scroll-to-top', function (e) {
-    var $anchor = $(this);
+    var $anchor = $(_this);
     $('html, body').stop().animate({
       scrollTop: $($anchor.attr('href')).offset().top
     }, 500);
+    e.preventDefault();
+  }); // Product section
+
+  $(document).on('click', '#btn-quantity-down,#btn-quantity-up', function (e) {
+    e.preventDefault();
+    var quantity = parseInt($('input#item-quantity').val());
+    var price = parseFloat($('input#product-price').val());
+    var id = e.currentTarget.id;
+
+    if (id == 'btn-quantity-down') {
+      quantity--;
+      if (quantity < 1) quantity = 1;
+    } else if (id == 'btn-quantity-up') {
+      quantity++;
+      if (quantity > 100) quantity = 100;
+    }
+
+    var totalPrice = price * quantity;
+    $('input#item-quantity').val(quantity);
+    $('span#item-price').text(totalPrice);
+    setTimeout(20);
+  });
+  $(document).on('click', 'a#btn-add-to-basket', function (e) {
+    $('form#basket-form').submit();
     e.preventDefault();
   });
 });

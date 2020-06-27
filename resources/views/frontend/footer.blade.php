@@ -29,7 +29,6 @@
 		</div>
 	</div>
 </div>
-<div class="d-flex justify-content-between h-100">
-	<span class="p-3">Built with love and coffee by Armino.</span>
-	<span class="p-3">Questions? Contact me on LinkedIn</span>
+<div class="d-flex justify-content-center h-100">
+    <p class="center p-3">Built with love and coffee by <a href="https://www.linkedin.com/in/armino/" title="Armino on LinkedIn" rel="nofollow noopener">Armino</a>.</p>
 </div>

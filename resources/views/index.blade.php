@@ -7,7 +7,5 @@
 		@break		
 		@case('about')
 		@break
-		@case('contact')
-		@break
 	@endswitch
 @endsection
