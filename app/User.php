@@ -50,7 +50,7 @@ class User extends Authenticatable
         $names = explode(" ", $this->name);
         $initials = "";
         for ($i = 0; $i < 2 || $i < count($names); $i++) {
-            $initials .= strtoupper($names[0]);
+            $initials .= strtoupper($names[$i][0]);
         }
         return $initials;
     }
