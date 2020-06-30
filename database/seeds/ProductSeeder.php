@@ -41,7 +41,8 @@ class ProductSeeder extends Seeder
                 'description' => 'Tomato Sauce, 100% Mozzarella, Ham, Chorizo, Green Peppers, Mushrooms',
                 'category' => 1,
                 'image' => 'pizza-quattro-stagioni.jpg',
-                'price' => 9.99
+                'price' => 9.99,
+                'best_seller' => true
             ],
             [ 
                 'name' => 'Quattro Formaggi', 
@@ -99,7 +100,8 @@ class ProductSeeder extends Seeder
                 'description' => '350ml Coca Cola',
                 'category' => 3,
                 'image' => 'coca-cola.jpg',
-                'price' => 1.49
+                'price' => 1.49,
+                'best_seller' => true
             ],
             [ 
                 'name' => 'Pepsi Cola', 
@@ -132,6 +134,9 @@ class ProductSeeder extends Seeder
             $product->category_id = $value['category'];
             $product->image = $value['image'];
             $product->price = $value['price'];
+            if ( array_key_exists('best_seller', $value) ) {
+                $product->best_seller = $value['best_seller'];
+            }
             $product->save();
         }
     }

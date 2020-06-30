@@ -19,10 +19,20 @@
             @endif
         </div>
         <div class="col-xs-12 col-lg-6">
-            <form id="basket-form" method="POST" action="{{ route('order.add') }}" enctype="multipart/form-data">
+            <form id="basket-form" method="POST" action="{{ route('order.product.store') }}"
+                enctype="multipart/form-data">
                 @csrf
-                <input name="product-id" type="hidden" id="product-id" value="{{ $product->id }}"  />
+                <input name="product-id" type="hidden" id="product-id" value="{{ $product->id }}" />
                 <input name="product-price" type="hidden" id="product-price" value="{{ $product->price }}" />
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
                 <div class="row mb-2">
                     <div class="col-12">
                         <h4>Toppings</h4>
@@ -36,14 +46,8 @@
                         <div class="quantity">
                             <div class="before"><span>Quantity:</span></div>
                             <div class="after">
-                                <input 
-                                    name="item-quantity" 
-                                    type="number" 
-                                    id="item-quantity" 
-                                    value="1" 
-                                    aria-label="Quantity"
-                                    min=1 
-                                    max=100 />                                
+                                <input name="item-quantity" type="number" id="item-quantity" value="1"
+                                    aria-label="Quantity" min=1 max=100 />
                             </div>
                         </div>
                     </div>

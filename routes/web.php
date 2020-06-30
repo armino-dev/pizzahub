@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,11 +15,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Public routes
-Route::get('/', 'Frontend\IndexController@index')->name('home');
-Route::get('/{category}/{product}', 'Frontend\ProductController@show')->name('product.show');
-Route::get('/checkout', 'Frontend\IndexController@checkout')->name('checkout');
 
-Route::post('/order', 'Frontend\OrderController@add')->name('order.add');
+Route::get('/', 'Frontend\IndexController@index')->name('home');
+Route::get('/checkout', 'Frontend\BasketController@checkout')->name('checkout');
+
+Route::get('/{category}', 'Frontend\ProductController@show')->name('products.show');
+Route::get('/{category}/{product}', 'Frontend\ProductController@show')->name('product.show');
+
+Route::get('/order', 'Frontend\IndexController@show')->name('order.show');
+Route::post('/order', 'Frontend\OrderController@store')->name('order.store');
+Route::post('/order/item', 'Frontend\BasketController@add')->name('order.product.store');
+
+
+
 
 // Authenticated Routes
 Route::group(['middleware' => ['auth']], function () {

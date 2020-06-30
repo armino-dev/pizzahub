@@ -12,7 +12,23 @@
 	<div class="text-danger">
 		<p>Only authenticated users see this text.</p>
 	</div>
-	@endauth
+    @endauth
+    
+    @if (session()->has('message'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <h5>Thank you!</h5>
+            <p>
+                {{ session()->get('message') }}
+            </p>
+            <p>
+            You can add more or you can 
+            proceed to <a href="{{ route('checkout') }}" title="Checkout">checkout</a>.
+            </p>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
 
     <h2 class="mb-4">{{ $category->name }}</h2>
 	<div class="row p-0 m-0">

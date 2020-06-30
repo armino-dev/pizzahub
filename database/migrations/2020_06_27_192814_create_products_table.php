@@ -14,7 +14,7 @@ class CreateProductsTable extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->timestamps();
             $table->string('name', 255);
             $table->string('slug', 255)->unique();
@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->text('description')->nullable();
             $table->string('image', 255)->nullable();
             $table->decimal('price', 6, 2)->default(0);
+            $table->boolean('best_seller')->default(false);
 
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });

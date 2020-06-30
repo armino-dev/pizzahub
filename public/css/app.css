@@ -11046,11 +11046,15 @@ main {
 }
 
 .card-listing-price {
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 5px;
+  padding: 5px 10px;
   color: white;
   z-index: 99;
   position: absolute;
+  font-weight: bold;
   bottom: 15px;
-  left: 10%;
+  left: 10px;
 }
 
 .card-listing-price span {
