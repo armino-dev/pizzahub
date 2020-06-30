@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
 	@yield('additional_css')
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body id="app">
 	<div id="wrapper">
@@ -35,7 +35,7 @@
 	</div>
 	@include('includes/scroll-to-top')	
 	@yield('additional_before_js')
-    <script src="{{ asset('js/app.js') }}"></script>	
+    <script src="{{ secure_asset('js/app.js') }}"></script>	
 	@yield('additional_after_js')
 </body>
 </html>
