@@ -17,6 +17,7 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->text('comment')->nullable();
             $table->text('address')->nullable();
+            $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->unsignedDecimal('discount', 6, 2)->default(0);
             $table->unsignedInteger('vat')->default(0);
