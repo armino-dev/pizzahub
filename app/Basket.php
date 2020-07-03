@@ -37,15 +37,17 @@ class Basket
             $newItem = $this->items[$id];
             $newItem['quantity'] += $item['quantity'];
         }
-
-        
-        $this->items[$id] = $newItem;
-        $this->total += $newItem['price'] * $newItem['quantity'];        
+        $this->items[$id] = $newItem;      
     }
 
     public function update($item)
     {
-        $this->add($item);
+        $id = $item['id'];
+        if ($this->items && array_key_exists($id, $this->items) ) {
+            $newItem = $this->items[$id];
+            $newItem['quantity'] = $item['quantity'];
+        }
+        $this->items[$id] = $newItem;
     }
 
     public function delete($id)
@@ -67,6 +69,24 @@ class Basket
 
     public function getTotal()
     {
+        $total = 0;
+        if ($this->items) {
+            foreach($this->items as $item) {
+                $total += $item['quantity'] * $item['price'];
+            }
+        }
+        $this->total = $total;
         return $this->total;
+    }
+
+    public function getQuantity()
+    {
+        $total = 0;
+        if ($this->items) {
+            foreach($this->items as $item) {
+                $total += $item['quantity'];
+            }
+        }
+        return $total;
     }
 }

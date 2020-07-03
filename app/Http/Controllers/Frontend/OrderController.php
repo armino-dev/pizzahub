@@ -35,9 +35,41 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        $user = auth()->user();
+        if (!session()->has('basket') || !session()->has('order-detail')) {
+            return redirect(route('home'));
+        }
+        $basket = session()->get('basket');
+        $orderDetail = session()->get('order-detail');
+
+        $orderItems = [];
+        foreach($basket->getItems() as $key => $value) {
+            $item['product_id'] = $key;
+            $item['name'] = $value['name'];
+            $item['price'] = $value['price'];
+            $item['quantity'] = $value['quantity'];
+            $orderItems[] = $item;
+        }
+        
+        $order = new Order();
+        $order->address = implode('|', [$orderDetail['address'], $orderDetail['city'], $orderDetail['zip']]);
+        $order->vat = $basket->getTotal() - $basket->getTotal()/(1 + config('settings.vat')/100);
+        $order->delivery_cost =  config('settings.delivery_cost')[$orderDetail['city']];
+        $order->session_id = session()->getId();
+        $order->email = $orderDetail['email'];
+        $order->phone = $orderDetail['phone'];
+        $order->save();
+        $order->addItems($orderItems);
+
+        session()->forget(['basket', 'order-detail']);
+        // TODO:
+        // if user is logged in attach the order
+        // optional: send email to the user with order detail and invoice
+
+        
+        return redirect(route('home'))->with(['message' => 'Your order was successful and you will receive your food in 15 minutes.']);
     }
 
     /**

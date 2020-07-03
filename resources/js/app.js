@@ -4,6 +4,8 @@
  * building robust, powerful web applications using React + Laravel.
  */
 
+const { ajaxSettings } = require('jquery');
+
 require('./bootstrap');
 
 /**
@@ -14,8 +16,18 @@ require('./bootstrap');
 
 // require('./components/Example');
 
-$(document).ready(function() {
+
+
+$(document).ready(function () {
     "use strict";
+    // setup ajax to use csrf token
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+
 
     // Prevent the content wrapper from scrolling when the fixed side navigation hovered over
     $('body.navbar').on('mousewheel DOMMouseScroll wheel', (e) => {
@@ -39,9 +51,9 @@ $(document).ready(function() {
 
     // Smooth scrolling using jQuery easing
     $(document).on('click', 'a.scroll-to-top', (e) => {
-        var $anchor = $(this);
+        var anchor = $(e.currentTarget);
         $('html, body').stop().animate({
-            scrollTop: ($($anchor.attr('href')).offset().top)
+            scrollTop: ($(anchor.attr('href')).offset().top)
         }, 500);
         e.preventDefault();
     });
@@ -51,17 +63,17 @@ $(document).ready(function() {
         e.preventDefault();
         let quantity = parseInt($('input#item-quantity').val());
         const price = parseFloat($('input#product-price').val());
-        const id = e.currentTarget.id;        
+        const id = e.currentTarget.id;
         if (id == 'btn-quantity-down') {
             quantity--;
             if (quantity < 1) quantity = 1;
         } else if (id == 'btn-quantity-up') {
             quantity++;
             if (quantity > 100) quantity = 100;
-        }                
+        }
         const totalPrice = price * quantity;
         $('input#item-quantity').val(quantity);
-        $('span#item-price').text(totalPrice);        
+        $('span#item-price').text(totalPrice);
         setTimeout(20);
     });
 
@@ -69,6 +81,117 @@ $(document).ready(function() {
         $('form#basket-form').submit();
         e.preventDefault();
     });
-    
+
+    // switch currency
+    $(document).on('click', '#currency-switcher .btn', (e) => {
+        e.preventDefault();
+        const btn = $(e.currentTarget);
+        const currency = btn.attr('data-currency');
+        
+        $.ajax({
+            url: '/settings/currency',
+            method: 'POST',
+            data: {currency},
+            success: (data) => {
+                let result = JSON.parse(data);
+                if (result.status == 'success') {
+                    location.reload();
+                }
+            },
+            error: (error) => {
+                console.error("An error occurred.", error);
+            }
+        });
+    });
+
+
+    // checkout    
+    $(document).on('click', '.btn-minus-quantity,.btn-plus-quantity,.btn-erase-item', (e) => {
+        e.preventDefault();
+        const btn = $(e.currentTarget);
+        const id = btn.attr('data-id');
+        const quantitySpan = $('span#quantity-' + id);
+        const priceSpan = $('span#price-' + id);
+        const totalPriceSpan = $('span#price-total-' + id);
+        const vatSpan = $('span#vat-cost' );
+        const grandTotalSpan = $('span#grand-total');
+
+        let quantity = parseInt(quantitySpan.text());
+        const price = parseFloat(priceSpan.text());
+        let grandTotal = parseFloat(grandTotalSpan.text());
+        
+        let totalPrice = parseFloat(totalPriceSpan.text());
+
+        if (btn.hasClass('btn-minus-quantity')) {
+
+            if (quantity > 1) {
+                quantity--;
+                grandTotal -= price;
+                $.ajax({
+                    url: '/basket/item',
+                    method: 'PATCH',
+                    dataType: 'json',            
+                    data: {'product-id': id, 'item-quantity': quantity},
+                    success: (data) => {                    
+                        if (data.status == 'success') {
+                            location.reload();
+                        }
+                    },
+                    error: (error) => {
+                        console.error('An error occurred.', error);
+                    }
+                });
+            }
+        } else if (btn.hasClass('btn-plus-quantity')) {
+            if (quantity < 100) {
+                quantity++;
+                grandTotal += price;
+                $.ajax({
+                    url: '/basket/item',
+                    method: 'PATCH',
+                    dataType: 'json',            
+                    data: {'product-id': id, 'item-quantity': quantity},
+                    success: (data) => {                    
+                        if (data.status == 'success') {
+                            location.reload();
+                        }
+                    },
+                    error: (error) => {
+                        console.error('An error occurred.', error);
+                    }
+                });
+            }
+
+        } else if (btn.hasClass('btn-erase-item')) {
+            let canDelete = confirm("Are you sure you want to remove the item from basket?");
+            if (canDelete) {
+                $.ajax({
+                    url: '/basket/item',
+                    method: 'DELETE',
+                    dataType: 'json',            
+                    data: {'product-id': id},
+                    success: (data) => {                    
+                        if (data.status == 'success') {
+                            location.reload();
+                        }
+                    },
+                    error: (error) => {
+                        console.error('An error occurred.', error);
+                    }
+                });
+            }
+
+        }
+
+
+        totalPrice = quantity * price;
+        let vat = grandTotal - grandTotal/(1 + settings.vat/100);
+        quantitySpan.text(quantity.toString());
+        totalPriceSpan.text(totalPrice.toFixed(2));
+        vatSpan.text(vat.toFixed(2));
+        grandTotalSpan.text(grandTotal.toFixed(2));
+
+        setTimeout(20);
+    });
 
 });

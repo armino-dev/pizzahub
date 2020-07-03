@@ -15,9 +15,18 @@
             {{ config('app.name', 'PizzaHub') }}
         </a>
         
-        <a class="navbar-basket" href="{{ route('checkout') }}">
-            <i class="fas fa-shopping-basket"></i>
-        </a>
+        <div class="navbar-basket-container">
+            <a class="basket-icon" href="{{ route('basket') }}">
+                <i class="fas fa-shopping-basket"></i>                
+            </a>            
+            <span id="navbar-basket-items" class="basket-text">
+                @if (session()->has('basket'))
+                    {{ session()->get('basket')->getQuantity() }}
+                @else
+                    0
+                @endif
+            </span>
+        </div>        
         
         
         <div class="collapse navbar-collapse" id="navbarSupportedContent">

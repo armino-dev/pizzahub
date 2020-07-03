@@ -6,7 +6,8 @@
 		@case('home')
 			@include('frontend.index')
 		@break		
-		@case('about')
+        @case('about')
+            @include('frontend.about')
 		@break
 	@endswitch
 @endsection

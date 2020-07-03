@@ -1,59 +1,41 @@
 @extends('layouts/app')
 
 
-@section('content')    
+@section('content')
 <div class="container-fluid mt-5">
-    <h2>Checkout</h2>
-    @if ($basket) 
-        <?php $items = $basket->getItems(); ?>               
-        <table class="table table-striped">
-            <thead class="thead-dark">
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Product</th>
-                  <th scope="col">Quantity</th>                  
-                  <th scope="col">Price</th>
-                </tr>
-              </thead>
-            <tbody>
-            @foreach ($items as $key => $item)
-               <tr>
-                   <td>{{ $loop->index + 1 }}</td>
-                   <td>{{ $item['name'] }}<br />{{ $item['price'] }}</td>
-                   <td>
-                       <button 
-                            class="btn btn-outline-dark btn-minus-quantity mr-2"
-                            data-id={{ $key }}>
-                            <i class="fas fa-minus-circle"></i>
-                       </button>
-                       {{ $item['quantity'] }}
-                       <button
-                            class="btn btn-outline-dark btn-plus-quantity ml-2"
-                            data-id={{ $key }}>
-                            <i class="fas fa-plus-circle"></i>
-                       </button>
-                    </td>                   
-                   <td>{{ $item['price'] * $item['quantity'] }}</td>
-               </tr> 
-            @endforeach                        
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan=3 class="text-right"><strong>VAT:</strong></td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td colspan=3 class="text-right"><strong>Delivery cost:</strong></td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td colspan=3 class="text-right"><strong>Grand total:</strong></td>
-                    <td>{{ $basket->getTotal() }}</td>
-                </tr>
-            </tfoot>
-        </table>
+    <div class="d-flex justify-content-between mb-3">
+        <div class="d-flex">
+            <h2>Checkout</h2>
+        </div>
+        <div class="d-flex">
+            <div class="row">
+                <div class="col">
+                    @include('frontend.currency')
+                </div>
+            </div>
+        </div>
+    </div>
+    @if ($basket !== "null" && $basket->getQuantity() > 0)
+
+    <?php $items = $basket->getItems(); ?>
+    
+    @include('frontend.checkout-table')
+
+    <div class="d-flex">
+        <p>
+            If you are ok with this click next to add a delivery address. 
+            The delivery cost will be calculated on the next step.
+        </p>
+    </div>
+    <div class="d-flex justify-content-end">
+        <a href="{{route('basket.step1')}}" class="btn btn-primary btn-checkout-address" title="Enter delivery address">Next</a>
+    </div>
     @else
-        <p>Your shopping basket is empty. Please add something in it first.</p>
+    <p>Your shopping basket is empty. <br />Please add something in it first.</p>
+    <p>
+        <a href="{{route('home')}}" title="Back to shopping" class="btn btn-primary">Back to shopping
+        </a>
+    </p>
     @endif
 </div>
 @endsection

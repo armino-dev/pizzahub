@@ -3,11 +3,20 @@
 
 @section('content')
 <div class="container product">
-    <div class="row">
-        <div class="col-xs-12 p-3">
-            <h2>{{ $product->name }}</h2>
+
+    <div class="d-flex justify-content-between mb-3">
+        <div class="d-flex">
+            <h2>{{$product->name}}</h2>
+        </div>
+        <div class="d-flex">
+            <div class="row">
+                <div class="col">
+                    @include('frontend.currency')
+                </div>
+            </div>
         </div>
     </div>
+
     <div class="row">
         <div class="col-xs-12 col-lg-6 image mb-3">
             @if ($product->image)
@@ -19,7 +28,7 @@
             @endif
         </div>
         <div class="col-xs-12 col-lg-6">
-            <form id="basket-form" method="POST" action="{{ route('order.product.store') }}"
+            <form id="basket-form" method="POST" action="{{ route('basket.item.store') }}"
                 enctype="multipart/form-data">
                 @csrf
                 <input name="product-id" type="hidden" id="product-id" value="{{ $product->id }}" />
@@ -35,7 +44,7 @@
                 @endif
                 <div class="row mb-2">
                     <div class="col-12">
-                        <h4>Toppings</h4>
+                        <h4>Description</h4>
                         <p>
                             {{ $product->description }}
                         </p>
@@ -53,13 +62,13 @@
                     </div>
                     <div class="col-xs-12 col-md-6">
                         <div class="price">
-                            <div class="before"><span>Price (EUR):</span></div>
-                            <div class="after"><span id="item-price">{{ $product->price }}</span></div>
+                            <div class="before"><span>Price ({{$currencySymbol}}):</span></div>
+                            <div class="after"><span id="item-price">{{ number_format($product->price * $conversionRate, 2) }}</span></div>
                         </div>
                     </div>
                 </div>
                 <div class="action">
-                    <a href="#" class="btn btn-secondary btn-lg" title="Back">
+                    <a href="{{route('products.show', Str::slug($category->name))}}" class="btn btn-secondary btn-lg" title="Back">
                         <i class="fas fa-arrow-alt-circle-left"></i>
                     </a>
                     <a href="#" id="btn-add-to-basket" class="btn btn-primary btn-lg" title="Add to cart">

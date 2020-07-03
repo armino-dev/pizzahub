@@ -1,0 +1,8 @@
+{
+    "name": "PizzaHub",
+    "short_name": "PizzaHub",
+    "start_url": "/",
+    "display": "standalone",
+  	"background_color": "#fefefe",
+  	"theme_color": "#343a40"
+}

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,16 +18,40 @@ use Illuminate\Support\Facades\Auth;
 // Public routes
 
 Route::get('/', 'Frontend\IndexController@index')->name('home');
-Route::get('/checkout', 'Frontend\BasketController@checkout')->name('checkout');
+Route::get('/about', 'Frontend\IndexController@about')->name('about');
+
+Route::get('/basket', 'Frontend\BasketController@view')->name('basket');
+Route::get('/basket/step1', 'Frontend\BasketController@step1')->name('basket.step1');
+Route::post('/basket/step2', 'Frontend\BasketController@step2')->name('basket.step2');
+Route::get('/basket/review', 'Frontend\BasketController@review')->name('basket.review');
+
+Route::post('/basket/item', 'Frontend\BasketController@add')->name('basket.item.store');
+Route::delete('/basket/item', 'Frontend\BasketController@delete')->name('basket.item.delete');
+Route::patch('/basket/item', 'Frontend\BasketController@update')->name('basket.item.update');
+
+
+
+// Simple route for ajax currency change - no need for a controller
+Route::post('/settings/currency', function () {
+    $valid = request()->validate([
+         'currency' => 'string|in:eur,usd'
+    ]);
+    
+    session()->put('currency', $valid['currency']);
+    session()->save();
+    
+    return json_encode(['status' => 'success']);
+});
+
+Route::get('/order', 'Frontend\OrderController@store')->name('order.store');
+// Route::get('/order', 'Frontend\IndexController@show')->name('order.show');
+// Route::post('/order', 'Frontend\OrderController@store')->name('order.store');
+// Route::post('/order/item', 'Frontend\BasketController@add')->name('order.product.store');
+
+Auth::routes();
 
 Route::get('/{category}', 'Frontend\ProductController@show')->name('products.show');
 Route::get('/{category}/{product}', 'Frontend\ProductController@show')->name('product.show');
-
-Route::get('/order', 'Frontend\IndexController@show')->name('order.show');
-Route::post('/order', 'Frontend\OrderController@store')->name('order.store');
-Route::post('/order/item', 'Frontend\BasketController@add')->name('order.product.store');
-
-
 
 
 // Authenticated Routes
@@ -45,5 +70,3 @@ Route::group(['middleware' => ['auth']], function () {
     });
 });
 
-
-Auth::routes();
