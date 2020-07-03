@@ -1,0 +1,52 @@
+ul.food-menu {
+    position: fixed;
+    z-index: 1000;
+    top: $navbar-height;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    list-style-type: none;
+    height: $food-menu-height;
+    background-color: $gray-300;
+    width: 100%;    
+    li {
+        height: 100%;
+        box-sizing: border-box;
+        padding:0 30px;
+        display: flex; 
+        align-items: center;         
+        a {
+            width: 80px;
+            height: 80px;
+            box-sizing: border-box;            
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;            
+            border-radius: 5px;
+            span {                
+                &.link {
+                    &-icon {
+                        font-size: 2rem;
+                    }
+                    &-text {
+                        font-size: .8rem;
+                    }
+                }
+            }
+            &:hover, &.active {
+                color: $blue;
+            }
+        }
+        &.item-active {
+            a {
+                background-color: rgba(100, 100, 100, .5);
+            }
+        }
+    }
+}

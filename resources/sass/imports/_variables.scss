@@ -5,26 +5,24 @@
 $navbar-base-height: $navbar-brand-height + $navbar-brand-padding-y * 2;
 $navbar-padding-vertical: $navbar-padding-y * 2;
 $navbar-height: $navbar-base-height + $navbar-padding-vertical;
-//$sidebar-base-width: 225px;
-//$sidebar-collapsed-width: 90px;
+$food-menu-height: 100px;
 $sticky-footer-height: 80px;
 
-// // Body
-// $body-bg: #f8fafc;
+// Body
+$body-bg: #f8fafc;
 
-// // Typography
-// $font-family-sans-serif: 'Nunito', sans-serif;
-// $font-size-base: 0.9rem;
-// $line-height-base: 1.6;
+// Typography
+$enable-responsive-font-sizes: true;
 
-// // Colors
-// $blue: #3490dc;
-// $indigo: #6574cd;
-// $purple: #9561e2;
-// $pink: #f66d9b;
-// $red: #e3342f;
-// $orange: #f6993f;
-// $yellow: #ffed4a;
-// $green: #38c172;
-// $teal: #4dc0b5;
-// $cyan: #6cb2eb;
+
+// Colors
+$blue: #3490dc;
+$indigo: #6574cd;
+$purple: #9561e2;
+$pink: #f66d9b;
+$red: #e3342f;
+$orange: #f6993f;
+$yellow: #ffed4a;
+$green: #38c172;
+$teal: #4dc0b5;
+$cyan: #6cb2eb;

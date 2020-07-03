@@ -1,7 +1,17 @@
 footer.sticky-footer {
-	flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
 	align-items: center;
     background-color: $gray-200;
 	height:100%;
     width:100%;
+    .attribution {
+        width: 100%;
+        background-color: $gray-400;
+        align-items: center;
+        p {
+            padding: 20px 10px 10px 10px;
+            width: 100%;
+        }
+    }
 }

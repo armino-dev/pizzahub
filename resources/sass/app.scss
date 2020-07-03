@@ -1,44 +1,53 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;1,400&display=swap");
 
 // Variables
-@import 'imports/variables';
+@import "imports/variables";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
-
+@import "~bootstrap/scss/bootstrap";
 
 html {
-	position:relative;
-	min-height:100%;
+	position: relative;
+	min-height: 100%;
 }
 
 body {
-	min-height:100vh;
+	min-height: 100vh;
 	display: flex;
-    flex-direction: column;
-	font-family: Nunito
+	flex-direction: column;
+	font-family: "Nunito", sans-serif;
+	background-color: $body-bg;
 }
 
-h1,h2,h3,h4,h5,h6 {font-family: Nunito, sans-serif;}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: "Nunito", sans-serif;
+	font-weight: bold;
+}
 
 #wrapper {
-	display:flex;
-	flex:1;
-	flex-direction:column;
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	padding-top: $food-menu-height;
 }
 
 main {
-    width:100%;
-	flex:1 0 auto;
+	width: 100%;
+	flex: 1 0 auto;
 	padding-top: $navbar-height;
-    padding-bottom: $sticky-footer-height;
+	padding-bottom: $sticky-footer-height;
 }
 
-
 // Components
-@import 'imports/scroll_to_top';
-@import 'imports/card';
-@import 'imports/product';
-@import 'imports/footer';
-
+@import "imports/scroll_to_top";
+@import "imports/basket";
+@import "imports/food_menu";
+@import "imports/card";
+@import "imports/product";
+@import "imports/footer";

@@ -12,7 +12,7 @@
                 img {
                     height: 240px;
                     width: 320px;
-                    background: url(/images/default.svg) no-repeat top left;
+                    background: url(/images/default.svg) no-repeat center center;
                     background-size: cover;
                     object-fit: cover;
                     transition: all 0.3s;
@@ -48,10 +48,7 @@
             font-weight: bold;
             bottom: 15px;
             left: 10px;
-            & span {
-                display: block;
-                font-size: 0.7rem;
-            }
+            
         }
         &-name {
             h5 {
