@@ -13,7 +13,7 @@ class DashboardController extends Controller
         if (!$user) {
             return redirect(route('home'));
         }
-        $orders = $user->orders();
+        $orders = $user->orders;
 
         return view('frontend.dashboard', compact('user', 'orders'));
     }
@@ -23,8 +23,8 @@ class DashboardController extends Controller
         if (!$user) {
             return redirect(route('home'));
         }
-
-        return view('frontend.dashboard.orders', compact('user'));
+        $orders = $user->orders;
+        return view('frontend.dashboard.orders', compact('user', 'orders'));
     }
 
     public function profile() {
@@ -32,7 +32,7 @@ class DashboardController extends Controller
         if (!$user) {
             return redirect(route('home'));
         }
-
+       
         return view('frontend.dashboard.profile', compact('user'));
     }
 }
