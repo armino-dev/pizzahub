@@ -50,10 +50,6 @@ Route::get('/order', 'Frontend\OrderController@store')->name('order.store');
 
 Auth::routes();
 
-Route::get('/{category}', 'Frontend\ProductController@show')->name('products.show');
-Route::get('/{category}/{product}', 'Frontend\ProductController@show')->name('product.show');
-
-
 // Authenticated Routes
 Route::group(['middleware' => ['auth']], function () {
 
@@ -66,7 +62,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     // admin backend routes
     Route::group(['prefix' => 'admin'], function () {
-
+        // for the future
     });
 });
 
+Route::get('/{category}', 'Frontend\ProductController@show')->name('products.show');
+Route::get('/{category}/{product}', 'Frontend\ProductController@show')->name('product.show');
