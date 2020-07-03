@@ -13,16 +13,17 @@ class CategorySeeder extends Seeder
     public function run()
     {        
         $categories = [
-            1 => 'Pizzas',
-            2 => 'Desserts',
-            3 => 'Drinks',
+            1 => ['Pizzas', 'fas fa-pizza-slice'],
+            2 => ['Desserts', 'fas fa-birthday-cake'],
+            3 => ['Drinks', 'fas fa-beer']
         ];
 
         foreach($categories as $key => $value) {
             $category = new Category();
             $category->unguard();
             $category->id = $key;
-            $category->name = $value;
+            $category->name = $value[0];
+            $category->icon = $value[1];
             $category->save();
         }
     }

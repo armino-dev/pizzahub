@@ -107,7 +107,7 @@ class ProductSeeder extends Seeder
                 'name' => 'Pepsi Cola', 
                 'description' => '350ml Pepsi Cola',
                 'category' => 3,
-                'image' => 'pepsi.jpg',
+                'image' => 'pepsi-cola.jpg',
                 'price' => 1.49
             ],
             [ 
@@ -121,7 +121,7 @@ class ProductSeeder extends Seeder
                 'name' => 'Ursus Beer', 
                 'description' => '500ml Ursus Beer',
                 'category' => 3,
-                'image' => 'ursus.jpg',
+                'image' => 'ursus-retro.jpg',
                 'price' => 2.49
             ],
         ];
