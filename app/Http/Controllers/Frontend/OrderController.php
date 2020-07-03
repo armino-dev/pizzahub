@@ -54,18 +54,26 @@ class OrderController extends Controller
         }
         
         $order = new Order();
+        $grandTotal = $basket->getTotal();
         $order->address = implode('|', [$orderDetail['address'], $orderDetail['city'], $orderDetail['zip']]);
-        $order->vat = $basket->getTotal() - $basket->getTotal()/(1 + config('settings.vat')/100);
+        $order->vat = config('settings.vat')/100;
         $order->delivery_cost =  config('settings.delivery_cost')[$orderDetail['city']];
+        $order->total = $grandTotal;
         $order->session_id = session()->getId();
         $order->email = $orderDetail['email'];
         $order->phone = $orderDetail['phone'];
+        if ($user) {
+            $order->user_id = $user->id;   
+        }
         $order->save();
         $order->addItems($orderItems);
 
         session()->forget(['basket', 'order-detail']);
+
+
+        
+
         // TODO:
-        // if user is logged in attach the order
         // optional: send email to the user with order detail and invoice
 
         
