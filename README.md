@@ -42,3 +42,6 @@ php artisan db:seed
 
 ### Step 4
 
+```bash
+php artisan serve
+```
