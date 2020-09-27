@@ -59,7 +59,7 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi",
-            "@php touch database/database.sqlite"
+            "touch database/database.sqlite"
         ]
     }
 }
