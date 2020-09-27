@@ -10,13 +10,11 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     
-    public function show($category, $product = null)
+    public function show(Category $category, Product $product = null)
     {
         $user = auth()->user();
         $categories = Category::all();
-        $category = Category::where('name', $category)->firstOrFail();
         if ($product != null) {
-            $product = Product::where('slug', $product)->firstOrFail();
             return view('frontend.product', compact('user', 'category', 'product'));
         }        
 

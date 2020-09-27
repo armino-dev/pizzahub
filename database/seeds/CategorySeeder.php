@@ -22,6 +22,7 @@ class CategorySeeder extends Seeder
             $category = new Category();
             $category->unguard();
             $category->id = $key;
+            $category->slug = strtolower($value[0]);
             $category->name = $value[0];
             $category->icon = $value[1];
             $category->save();
