@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,17 +28,15 @@ Route::post('/basket/item', 'Frontend\BasketController@add')->name('basket.item.
 Route::delete('/basket/item', 'Frontend\BasketController@delete')->name('basket.item.delete');
 Route::patch('/basket/item', 'Frontend\BasketController@update')->name('basket.item.update');
 
-
-
 // Simple route for ajax currency change - no need for a controller
 Route::post('/settings/currency', function () {
     $valid = request()->validate([
-         'currency' => 'string|in:eur,usd'
+         'currency' => 'string|in:eur,usd',
     ]);
-    
+
     session()->put('currency', $valid['currency']);
     session()->save();
-    
+
     return json_encode(['status' => 'success']);
 });
 
