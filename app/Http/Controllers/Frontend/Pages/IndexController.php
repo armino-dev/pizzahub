@@ -1,17 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Frontend;
+namespace App\Http\Controllers\Frontend\Pages;
 
-use App\Category;
 use App\Http\Controllers\Controller;
-use App\Product;
-use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
+use App\Models\Category;
+use App\Models\Product;
 
 class IndexController extends Controller
 {
     //
-    public function index()
+    public function show()
     {
         $user = auth()->user();
         $categories = Category::all();
@@ -34,15 +32,5 @@ class IndexController extends Controller
         }
 
         return view('index', compact('user', 'categories', 'menus'));
-    }
-
-    public function about()
-    {
-        return view('index');
-    }
-
-    public function contact()
-    {
-        return view('index');
     }
 }

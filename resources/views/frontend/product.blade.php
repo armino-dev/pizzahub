@@ -68,7 +68,7 @@
                     </div>
                 </div>
                 <div class="action">
-                    <a href="{{route('products.show', Str::slug($category->name))}}" class="btn btn-secondary btn-lg" title="Back">
+                    <a href="{{route('category.show', Str::slug($product->category->name))}}" class="btn btn-secondary btn-lg" title="Back">
                         <i class="fas fa-arrow-alt-circle-left"></i>
                     </a>
                     <a href="#" id="btn-add-to-basket" class="btn btn-primary btn-lg" title="Add to cart">
