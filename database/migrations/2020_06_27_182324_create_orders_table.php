@@ -26,7 +26,6 @@ class CreateOrdersTable extends Migration
             $table->string('session_id', 128)->index();
             $table->unsignedDecimal('total', 6, 2)->default(0);
 
-            
             $table->timestamps();
         });
     }

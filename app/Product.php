@@ -6,9 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-
     protected $guarded = ['id'];
-    
 
     public function getRouteKeyName()
     {
@@ -17,6 +15,6 @@ class Product extends Model
 
     public function category()
     {
-        return $this->belongsTo(Category::class);        
+        return $this->belongsTo(Category::class);
     }
 }

@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Order;
 use App\Http\Controllers\Controller;
+use App\Order;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -38,45 +37,41 @@ class OrderController extends Controller
     public function store()
     {
         $user = auth()->user();
-        if (!session()->has('basket') || !session()->has('order-detail')) {
+        if (! session()->has('basket') || ! session()->has('order-detail')) {
             return redirect(route('home'));
         }
         $basket = session()->get('basket');
         $orderDetail = session()->get('order-detail');
 
         $orderItems = [];
-        foreach($basket->getItems() as $key => $value) {
+        foreach ($basket->getItems() as $key => $value) {
             $item['product_id'] = $key;
             $item['name'] = $value['name'];
             $item['price'] = $value['price'];
             $item['quantity'] = $value['quantity'];
             $orderItems[] = $item;
         }
-        
+
         $order = new Order();
         $grandTotal = $basket->getTotal();
         $order->address = implode('|', [$orderDetail['address'], $orderDetail['city'], $orderDetail['zip']]);
-        $order->vat = config('settings.vat')/100;
-        $order->delivery_cost =  config('settings.delivery_cost')[$orderDetail['city']];
+        $order->vat = config('settings.vat') / 100;
+        $order->delivery_cost = config('settings.delivery_cost')[$orderDetail['city']];
         $order->total = $grandTotal;
         $order->session_id = session()->getId();
         $order->email = $orderDetail['email'];
         $order->phone = $orderDetail['phone'];
         if ($user) {
-            $order->user_id = $user->id;   
+            $order->user_id = $user->id;
         }
         $order->save();
         $order->addItems($orderItems);
 
         session()->forget(['basket', 'order-detail']);
 
-
-        
-
         // TODO:
         // optional: send email to the user with order detail and invoice
 
-        
         return redirect(route('home'))->with(['message' => 'Your order was successful and you will receive your food in 15 minutes.']);
     }
 
@@ -124,5 +119,4 @@ class OrderController extends Controller
     {
         //
     }
-
 }

@@ -13,7 +13,7 @@ class UpdateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::table('categories', function($table) {
+        Schema::table('categories', function ($table) {
             $table->string('slug', 255)->unique()->after('id');
         });
     }
@@ -25,7 +25,7 @@ class UpdateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::table('categories', function($table) {
+        Schema::table('categories', function ($table) {
             $table->dropColumn('slug');
         });
     }

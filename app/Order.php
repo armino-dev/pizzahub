@@ -20,8 +20,8 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
-
-    public function addItem($item) {
+    public function addItem($item)
+    {
         return $this->orderItems()->create($item);
     }
 
@@ -29,5 +29,4 @@ class Order extends Model
     {
         return $this->orderItems()->createMany($items);
     }
-
 }
