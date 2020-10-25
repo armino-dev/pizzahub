@@ -16,22 +16,23 @@ use Illuminate\Support\Facades\Route;
 
 // Public routes
 
-Route::get('/', 'Frontend\IndexController@index')->name('home');
-Route::get('/about', 'Frontend\IndexController@about')->name('about');
+Route::get('/', [App\Http\Controllers\Frontend\Pages\IndexController::class, 'show'])->name('home');
+Route::get('/about', [App\Http\Controllers\Frontend\Pages\AboutController::class, 'show'])->name('about');
+Route::get('/contact', [App\Http\Controllers\Frontend\Pages\ContactController::class, 'show'])->name('contact');
 
-Route::get('/basket', 'Frontend\BasketController@view')->name('basket');
-Route::get('/basket/step1', 'Frontend\BasketController@step1')->name('basket.step1');
-Route::post('/basket/step2', 'Frontend\BasketController@step2')->name('basket.step2');
-Route::get('/basket/review', 'Frontend\BasketController@review')->name('basket.review');
+Route::get('/basket', [App\Http\Controllers\Frontend\Basket\BasketController::class, 'show'])->name('basket');
+Route::get('/basket/step1', [App\Http\Controllers\Frontend\Basket\StepOneController::class, 'show'])->name('basket.step1');
+Route::post('/basket/step2', [App\Http\Controllers\Frontend\Basket\StepTwoController::class, 'store'])->name('basket.step2');
+Route::get('/basket/review', [App\Http\Controllers\Frontend\Basket\ReviewController::class, 'show'])->name('basket.review');
 
-Route::post('/basket/item', 'Frontend\BasketController@add')->name('basket.item.store');
-Route::delete('/basket/item', 'Frontend\BasketController@delete')->name('basket.item.delete');
-Route::patch('/basket/item', 'Frontend\BasketController@update')->name('basket.item.update');
+Route::post('/basket/item', [App\Http\Controllers\Frontend\Basket\ItemController::class, 'store'])->name('basket.item.store');
+Route::delete('/basket/item', [App\Http\Controllers\Frontend\Basket\ItemController::class, 'delete'])->name('basket.item.delete');
+Route::patch('/basket/item', [App\Http\Controllers\Frontend\Basket\ItemController::class, 'update'])->name('basket.item.update');
 
 // Simple route for ajax currency change - no need for a controller
 Route::post('/settings/currency', function () {
     $valid = request()->validate([
-         'currency' => 'string|in:eur,usd',
+        'currency' => 'string|in:eur,usd',
     ]);
 
     session()->put('currency', $valid['currency']);
@@ -40,21 +41,16 @@ Route::post('/settings/currency', function () {
     return json_encode(['status' => 'success']);
 });
 
-Route::get('/order', 'Frontend\OrderController@store')->name('order.store');
-// Route::get('/order', 'Frontend\IndexController@show')->name('order.show');
-// Route::post('/order', 'Frontend\OrderController@store')->name('order.store');
-// Route::post('/order/item', 'Frontend\BasketController@add')->name('order.product.store');
-
-Auth::routes();
+Route::get('/order', [App\Http\Controllers\Frontend\Order\OrderController::class, 'store'])->name('order.store');
 
 // Authenticated Routes
 Route::group(['middleware' => ['auth']], function () {
 
     // user dashboard routes
     Route::group(['prefix' => 'dashboard'], function () {
-        Route::get('/', 'Frontend\DashboardController@index')->name('dashboard');
-        Route::get('/orders', 'Frontend\DashboardController@orders')->name('dashboard.orders');
-        Route::get('/profile', 'Frontend\DashboardController@profile')->name('dashboard.profile');
+        Route::get('/', [App\Http\Controllers\Frontend\Dashboard\DashboardController::class, 'show'])->name('dashboard');
+        Route::get('/orders', [App\Http\Controllers\Frontend\Dashboard\OrderController::class, 'show'])->name('dashboard.orders');
+        Route::get('/profile', [App\Http\Controllers\Frontend\Dashboard\ProfileController::class, 'show'])->name('dashboard.profile');
     });
 
     // admin backend routes
@@ -63,5 +59,8 @@ Route::group(['middleware' => ['auth']], function () {
     });
 });
 
-Route::get('/{category}', 'Frontend\ProductController@show')->name('products.show');
-Route::get('/{category}/{product}', 'Frontend\ProductController@show')->name('product.show');
+// Register auth routes
+Auth::routes();
+
+Route::get('/{category}', [App\Http\Controllers\Frontend\CategoryController::class, 'show'])->name('category.show');
+Route::get('/{category}/{product}', [App\Http\Controllers\Frontend\ProductController::class, 'show'])->name('product.show');

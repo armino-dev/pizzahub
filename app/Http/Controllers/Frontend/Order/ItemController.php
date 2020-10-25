@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Frontend;
+namespace App\Http\Controllers\Frontend\Order;
 
 use App\Http\Controllers\Controller;
-use App\Order;
-use App\OrderItem;
-use App\Product;
+use App\Models\Order;
+use App\Models\OrderItem;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
-class OrderItemController extends Controller
+class ItemController extends Controller
 {
     //
     public function store(Request $request)

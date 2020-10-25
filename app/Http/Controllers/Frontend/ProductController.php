@@ -2,23 +2,21 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Category;
 use App\Http\Controllers\Controller;
-use App\Product;
-use Illuminate\Http\Request;
+use App\Models\Category;
+use App\Models\Product;
+use Illuminate\Http\Response;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class ProductController extends Controller
 {
-    public function show(Category $category, Product $product = null)
+    public function show(Category $category, Product $product)
     {
         $user = auth()->user();
-        $categories = Category::all();
-        if ($product != null) {
-            return view('frontend.product', compact('user', 'category', 'product'));
+        if ($category->id != $product->category_id) {
+            throw new HttpException(Response::HTTP_BAD_REQUEST, __('Product doesn\'t belong to this category'));
         }
 
-        $products = Product::where('category_id', $category['id'])->latest()->get();
-
-        return view('frontend.category', compact('user', 'categories', 'category', 'products'));
+        return view('frontend.product', compact('user', 'product'));
     }
 }

@@ -1,3 +1,5 @@
+[![StyleCI](https://github.styleci.io/repos/274407419/shield?branch=shift-35096)](https://github.styleci.io/repos/274407419?branch=shift-35096)
+
 # Pizza Hub
 
 This is a responsive demo pizza delivery web application written in PHP, using the Laravel Framework.
