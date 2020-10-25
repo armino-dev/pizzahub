@@ -1,4 +1,4 @@
-[![StyleCI](https://github.styleci.io/repos/274407419/shield?branch=shift-35096)](https://github.styleci.io/repos/274407419?branch=shift-35096)
+[![StyleCI](https://github.styleci.io/repos/274407419/shield?branch=master)](https://github.styleci.io/repos/274407419?branch=master)
 
 # Pizza Hub
 
