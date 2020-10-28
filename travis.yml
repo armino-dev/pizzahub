@@ -1,0 +1,30 @@
+dist: bionic
+
+language: php
+
+php:
+  - 7.2
+  - 7.3
+  - 7.4
+
+services:
+  - mysql
+
+cache:
+  directories:
+    - node_modules
+    - vendor
+
+before_script:
+  - cp .env.travis .env
+  - sudo mysql -e 'create database pizzahub;'
+  - composer self-update
+  - composer install --prefer-source --no-interaction --dev
+  - php artisan key:generate
+  - php artisan migrate --seed
+
+script:
+  - vendor/bin/phpunit
+
+notifications:
+  email: false
