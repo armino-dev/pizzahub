@@ -9,6 +9,8 @@
 .env.backup
 .phpunit.result.cache
 .idea
+.cache
+.vscode
 Homestead.json
 Homestead.yaml
 npm-debug.log
