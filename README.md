@@ -1,6 +1,7 @@
-[![StyleCI](https://github.styleci.io/repos/274407419/shield?branch=master)](https://github.styleci.io/repos/274407419?branch=master)
+[![StyleCI](https://github.styleci.io/repos/274407419/shield?branch=master)](https://github.styleci.io/repos/274407419?branch=master) [![Build Status](https://travis-ci.com/armino-dev/pizzahub.svg?branch=master)](https://travis-ci.com/armino-dev/pizzahub)
 
 # Pizza Hub
+=================================================
 
 This is a responsive demo pizza delivery web application written in PHP, using the Laravel Framework.
 
