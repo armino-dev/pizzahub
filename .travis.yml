@@ -15,8 +15,8 @@ cache:
 
 before_script:
   - cp .env.travis .env
-  - sudo mysql -e 'create database pizzahub;'
-  - composer self-update
+  - sudo mysql -e 'create database testing_db;'
+  - composer self-update --2
   - composer install --prefer-source --no-interaction
   - php artisan key:generate
   - php artisan migrate --seed
