@@ -18,6 +18,7 @@ before_script:
   - sudo mysql -e 'create database testing_db;'
   - composer self-update --2
   - composer install --prefer-source --no-interaction
+  - composer update
   - php artisan key:generate
   - php artisan migrate --seed
 
