@@ -7,6 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Product::class, function (Faker $faker) {
     $name = $faker->colorName;
+
     return [
         'name' => $name,
         'slug' => Str::slug($name),
@@ -14,6 +15,6 @@ $factory->define(Product::class, function (Faker $faker) {
         'category_id' => factory(App\Models\Category::class),
         'image' => $faker->imageUrl,
         'price' => $faker->randomFloat,
-        'best_seller' => $faker->boolean(20)
+        'best_seller' => $faker->boolean(20),
     ];
 });

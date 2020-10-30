@@ -14,7 +14,7 @@ class ItemController extends Controller
     public function store(StoreRequest $request)
     {
         $validation = $request->validated();
-        
+
         $product = Product::find($validation['product-id']);
 
         $basket = session()->has('basket') ? session()->get('basket') : null;

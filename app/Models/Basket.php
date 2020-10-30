@@ -74,7 +74,7 @@ class Basket
                 $total += $item['quantity'] * $item['price'];
             }
         }
-        
+
         return $this->total = $total;
     }
 
