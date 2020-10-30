@@ -15,9 +15,11 @@
             </div>
         </div>
     </div>
-    @if ($basket !== "null" && $basket->getQuantity() > 0)
+    @if ($basket && $basket->getQuantity() > 0)
 
-    <?php $items = $basket->getItems(); ?>
+    @php 
+        $items = $basket->getItems();
+    @endphp
     
     @include('frontend.checkout-table')
 
