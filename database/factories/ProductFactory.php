@@ -6,7 +6,7 @@ use App\Models\Product;
 use Faker\Generator as Faker;
 
 $factory->define(Product::class, function (Faker $faker) {
-    $name = $faker->colorName;
+    $name = $faker->unique()->colorName;
 
     return [
         'name' => $name,
