@@ -14,7 +14,7 @@ class Basket
      * @param mixed Basket
      * @return void
      */
-    public function __construct($basket)
+    public function __construct(?self $basket = null)
     {
         if ($basket) {
             $this->items = $basket->items;
@@ -27,15 +27,16 @@ class Basket
         $id = $item['id'];
         $newItem = [
             'name' => $item['name'],
-            'quantity' => $item['quantity'],
+            'quantity' => $item['quantity'] ?? 1,
             'price' => $item['price'],
         ];
 
         if ($this->items && array_key_exists($id, $this->items)) {
             $newItem = $this->items[$id];
-            $newItem['quantity'] += $item['quantity'];
+            $newItem['quantity'] += $item['quantity'] ?? 1;
         }
         $this->items[$id] = $newItem;
+        $this->total += $newItem['price'] * $newItem['quantity'];
     }
 
     public function update($item)
@@ -73,9 +74,8 @@ class Basket
                 $total += $item['quantity'] * $item['price'];
             }
         }
-        $this->total = $total;
-
-        return $this->total;
+        
+        return $this->total = $total;
     }
 
     public function getQuantity()
