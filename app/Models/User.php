@@ -2,6 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\Access\Authorizable;
+use Illuminate\Contracts\Auth\CanResetPassword;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -34,9 +38,14 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class User extends Authenticatable
+class User extends Authenticatable implements Authorizable, CanResetPassword
 {
-    use Notifiable;
+    use Notifiable,
+        HasFactory,
+        Authenticatable,
+        Authorizable,
+        CanResetPassword,
+        MustVerifyEmail;
 
     /**
      * The attributes that are mass assignable.

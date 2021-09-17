@@ -2,13 +2,17 @@
 
 namespace Database\Factories;
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+use App\Models\Order;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-use App\Order;
-use Faker\Generator as Faker;
+class OrderFactory extends Factory
+{
+    protected $model = Order::class;
 
-$factory->define(Order::class, function (Faker $faker) {
-    return [
-        //
-    ];
-});
+    public function definition()
+    {
+        return [
+            //
+        ];
+    }
+}
