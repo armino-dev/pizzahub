@@ -1,12 +1,18 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
-use App\Order;
-use Faker\Generator as Faker;
+use App\Models\Order;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(Order::class, function (Faker $faker) {
-    return [
-        //
-    ];
-});
+class OrderFactory extends Factory
+{
+    protected $model = Order::class;
+
+    public function definition()
+    {
+        return [
+            //
+        ];
+    }
+}

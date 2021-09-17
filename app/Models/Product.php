@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -18,6 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $price
  * @property int $best_seller
  * @property-read \App\Models\Category $category
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Product newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Product newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Product query()
@@ -35,6 +37,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Product extends Model
 {
+    use HasFactory;
+
     protected $guarded = ['id'];
 
     public function getRouteKeyName()

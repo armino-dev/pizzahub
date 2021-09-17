@@ -14,13 +14,13 @@ class BasketTest extends TestCase
 
     public function testABasketCanHaveProducts()
     {
-        $product = factory(Product::class)->create(
+        $product = Product::factory()->create(
             [
                 'name' => 'My product 2',
                 'slug' => \Str::slug('My product 2'),
                 'description' => 'Some description',
                 'image' => '',
-                'category_id' => factory(Category::class)->create(),
+                'category_id' => Category::factory()->create(),
                 'price' => 12.2,
                 'best_seller' => 0,
             ]
@@ -42,13 +42,13 @@ class BasketTest extends TestCase
 
     public function testAnItemFromBasketCanBeUpdated()
     {
-        $product = factory(Product::class)->create(
+        $product = Product::factory()->create(
             [
                 'name' => 'My product 2',
                 'slug' => \Str::slug('My product 2'),
                 'description' => 'Some description',
                 'image' => '',
-                'category_id' => factory(Category::class)->create(),
+                'category_id' => Category::factory()->create(),
                 'price' => 12.2,
                 'best_seller' => 0,
             ]
@@ -87,8 +87,8 @@ class BasketTest extends TestCase
 
     public function testAnItemFromBasketCanBeDeleted()
     {
-        $productOne = factory(Product::class)->create();
-        $productTwo = factory(Product::class)->create();
+        $productOne = Product::factory()->create();
+        $productTwo = Product::factory()->create();
 
         $data = [
             'product-id' => $productOne->id,

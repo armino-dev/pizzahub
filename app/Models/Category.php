@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -15,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $slug
  * @property-read \Illuminate\Database\Eloquent\Collection|Product[] $products
  * @property-read int|null $products_count
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Category newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Category newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Category query()
@@ -28,6 +30,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Category extends Model
 {
+    use HasFactory;
+
     public function getRouteKeyName()
     {
         return 'slug';
