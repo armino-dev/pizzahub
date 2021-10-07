@@ -8,7 +8,7 @@ This is a responsive demo pizza delivery web application written in PHP, using t
 
 ## Instalation
 
-> To run this project you must have PHP 7 and MySql (or any other dbms) installed as prerequisites.
+> To run this project you must have PHP 8 and MySql (or any other laravel supported dbms) installed as prerequisites.
 
 ### Step 1
 
