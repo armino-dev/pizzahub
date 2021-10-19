@@ -37,7 +37,7 @@ class OrderController extends Controller
     public function store()
     {
         $user = auth()->user();
-        if (! session()->has('basket') || ! session()->has('order-detail')) {
+        if (!session()->has('basket') || !session()->has('order-detail')) {
             return redirect(route('home'));
         }
         $basket = session()->get('basket');
@@ -55,7 +55,7 @@ class OrderController extends Controller
         $order = new Order();
         $grandTotal = $basket->getTotal();
         $order->address = implode('|', [$orderDetail['address'], $orderDetail['city'], $orderDetail['zip']]);
-        $order->vat = config('settings.vat') / 100;
+        $order->vat = config('settings.vat');
         $order->delivery_cost = config('settings.delivery_cost')[$orderDetail['city']];
         $order->total = $grandTotal;
         $order->session_id = session()->getId();
