@@ -37,7 +37,7 @@ class OrderController extends Controller
     public function store()
     {
         $user = auth()->user();
-        if (!session()->has('basket') || !session()->has('order-detail')) {
+        if (! session()->has('basket') || ! session()->has('order-detail')) {
             return redirect(route('home'));
         }
         $basket = session()->get('basket');
