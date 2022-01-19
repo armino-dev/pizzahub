@@ -1,4 +1,4 @@
-[![StyleCI](https://github.styleci.io/repos/274407419/shield?branch=master)](https://github.styleci.io/repos/274407419?branch=master) [![Build Status](https://travis-ci.com/armino-dev/pizzahub.svg?branch=master)](https://travis-ci.com/armino-dev/pizzahub)
+[![StyleCI](https://github.styleci.io/repos/274407419/shield?branch=master)](https://github.styleci.io/repos/274407419?branch=master) [![Build Status](https://travis-ci.com/armino-dev/pizzahub.svg?branch=master)](https://travis-ci.com/armino-dev/pizzahub) [![Crowdin](https://badges.crowdin.net/pizza-hub/localized.svg)](https://crowdin.com)
 
 # Pizza Hub
 
