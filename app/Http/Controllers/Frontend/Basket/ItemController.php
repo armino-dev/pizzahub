@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Frontend\Basket;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Basket\Item\DeleteRequest as DeleteRequest;
-use App\Http\Requests\Basket\Item\StoreRequest as StoreRequest;
-use App\Http\Requests\Basket\Item\UpdateRequest as UpdateRequest;
+use App\Http\Requests\Basket\Item\DeleteRequest;
+use App\Http\Requests\Basket\Item\StoreRequest;
+use App\Http\Requests\Basket\Item\UpdateRequest;
 use App\Models\Basket;
 use App\Models\Product;
 
