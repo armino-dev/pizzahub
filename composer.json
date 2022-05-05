@@ -16,7 +16,8 @@
         "laravel/framework": "^8.0",
         "laravel/scout": "^9.3",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^3.0"
+        "laravel/ui": "^3.0",
+        "sentry/sentry-laravel": "^2.12"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.8",
