@@ -10,15 +10,15 @@
         "production": "mix --production"
     },
     "devDependencies": {
-        "@babel/preset-react": "^7.14.5",
-        "@popperjs/core": "^2.10.1",
-        "bootstrap": "^5.1.1",
+        "@babel/preset-react": "^7.16.7",
+        "@popperjs/core": "^2.11.5",
+        "bootstrap": "^5.1.3",
         "cross-env": "^7.0.3",
         "jquery": "^3.6",
-        "laravel-mix": "^6.0.31",
+        "laravel-mix": "^6.0.43",
         "lodash": "^4.17.21",
-        "resolve-url-loader": "^4.0.0",
-        "sass": "^1.41.1",
-        "sass-loader": "^12.1.0"
+        "resolve-url-loader": "^5.0.0",
+        "sass": "^1.51.0",
+        "sass-loader": "^12.6.0"
     }
 }
