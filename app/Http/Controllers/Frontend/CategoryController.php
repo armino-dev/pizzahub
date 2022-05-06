@@ -20,7 +20,7 @@ class CategoryController extends Controller
         $categories = $category->exists ? $allCategories : collect();
 
         $cacheKey = 'products-on-category-'.$category['id'];
-        $products = Cache::remember($cacheKey, now()->addDay(), function ($category) {
+        $products = Cache::remember($cacheKey, now()->addDay(), function () use ($category) {
             return Product::where('category_id', $category['id'])->latest()->get();
         });
 
