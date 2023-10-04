@@ -27,7 +27,7 @@ class IndexController extends Controller
                         ->sortByDesc('best_seller')
                         ->take(3);
                 })
-                );
+            );
         });
 
         if (! session()->has('currency')) {
