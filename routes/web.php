@@ -45,7 +45,6 @@ Route::get('/order', [App\Http\Controllers\Frontend\Order\OrderController::class
 
 // Authenticated Routes
 Route::group(['middleware' => ['auth']], function () {
-
     // user dashboard routes
     Route::group(['prefix' => 'dashboard'], function () {
         Route::get('/', [App\Http\Controllers\Frontend\Dashboard\DashboardController::class, 'show'])->name('dashboard');
