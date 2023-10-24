@@ -1,4 +1,4 @@
-<div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 p-0">    
+<div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 p-0 p-md-3">
     <div class="mr-md-3 mb-3">
         <div class="card-listing">
             <div class="card-listing-header" style="position:relative;overflow:hidden">
@@ -13,7 +13,7 @@
                     <div class="card-listing-featured">Best seller</div>
                 @endif
                 <div class="card-listing-price">
-                    <span class="currency-symbol">{{ $currencySymbol }}</span> 
+                    <span class="currency-symbol">{{ $currencySymbol }}</span>
                     <span class="text">{{ number_format($product->price * $conversionRate, 2) }}</span>
                 </div>
             </div>
@@ -26,8 +26,8 @@
                 </div>
                 <div class="card-listing-footer">
                     <div>
-                        <a 
-                            href="/{{ Str::slug($category->name) }}/{{ $product->slug }}" 
+                        <a
+                            href="/{{ Str::slug($category->name) }}/{{ $product->slug }}"
                             title="{{ $product->name }}"
                             class="btn btn-primary">Choose</a>
                     </div>
